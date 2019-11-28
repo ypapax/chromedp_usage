@@ -31,8 +31,6 @@ func main() {
 		chromedp.Navigate(`https://golang.org/pkg/time/`),
 		// wait for footer element is visible (ie, page is loaded)
 		chromedp.WaitVisible(`body`),
-		// find and click "Expand All" link
-		chromedp.Click(`#pkg-examples > div`, chromedp.NodeVisible),
 		// retrieve the value of the textarea
 		chromedp.OuterHTML(`body`, &example),
 	)
