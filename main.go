@@ -25,10 +25,12 @@ func main() {
 	ctx, cancel = context.WithTimeout(ctx, 15*time.Second)
 	defer cancel()
 
+	u := `https://golang.org/pkg/time/`
+	log.Println("requesting", u)
 	// navigate to a page, wait for an element, click
 	var example string
 	err := chromedp.Run(ctx,
-		chromedp.Navigate(`https://golang.org/pkg/time/`),
+		chromedp.Navigate(u),
 		// wait for footer element is visible (ie, page is loaded)
 		chromedp.WaitVisible(`body`),
 		// retrieve the value of the textarea
