@@ -25,9 +25,9 @@ func main() {
 	ctx, cancel = context.WithTimeout(ctx, 15 * time.Second)
 	defer cancel()
 
-	u := `https://golang.org/pkg/time/`
-	//u := `https://www.whatismybrowser.com/detect/what-is-my-user-agent`
-	selector := `body`
+	//u := `https://golang.org/pkg/time/`
+	u := `https://www.whatismybrowser.com/detect/what-is-my-user-agent`
+	selector := `html`
 	log.Println("requesting", u)
 	log.Println("selector", selector)
 	// navigate to a page, wait for an element, click
