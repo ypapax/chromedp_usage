@@ -25,18 +25,19 @@ func main() {
 	ctx, cancel = context.WithTimeout(ctx, 15 * time.Second)
 	defer cancel()
 
-	//u := `https://golang.org/pkg/time/`
-	u := `https://www.whatismybrowser.com/detect/what-is-my-user-agent`
-	selector := `#detected_value`
+	u := `https://golang.org/pkg/time/`
+	//u := `https://www.whatismybrowser.com/detect/what-is-my-user-agent`
+	selector := `body`
 	log.Println("requesting", u)
+	log.Println("selector", selector)
 	// navigate to a page, wait for an element, click
 	var example string
 	err := chromedp.Run(ctx,
 		chromedp.Navigate(u),
 		// wait for footer element is visible (ie, page is loaded)
-		chromedp.WaitVisible(selector),
+		chromedp.WaitReady(selector),
 		// retrieve the value of the textarea
-		chromedp.Text(selector, &example),
+		chromedp.OuterHTML(selector, &example),
 	)
 	if err != nil {
 		log.Fatal(err)
