@@ -34,7 +34,7 @@ func main() {
 		// find and click "Expand All" link
 		chromedp.Click(`#pkg-examples > div`, chromedp.NodeVisible),
 		// retrieve the value of the textarea
-		chromedp.Value(`#example_After .play .input textarea`, &example),
+		chromedp.OuterHTML(`body`, &example),
 	)
 	if err != nil {
 		log.Fatal(err)
