@@ -27,15 +27,16 @@ func main() {
 
 	//u := `https://golang.org/pkg/time/`
 	u := `https://www.whatismybrowser.com/detect/what-is-my-user-agent`
+	selector := `#detected_value`
 	log.Println("requesting", u)
 	// navigate to a page, wait for an element, click
 	var example string
 	err := chromedp.Run(ctx,
 		chromedp.Navigate(u),
 		// wait for footer element is visible (ie, page is loaded)
-		chromedp.WaitVisible(`#detected_value`),
+		chromedp.WaitVisible(selector),
 		// retrieve the value of the textarea
-		chromedp.Text(`#detected_value`, &example),
+		chromedp.Text(selector, &example),
 	)
 	if err != nil {
 		log.Fatal(err)
